@@ -13,7 +13,7 @@
  * this source code.
  */
 
-namespace JNB\DoctrineDBALBridge\CommandBus;
+namespace JNB\DoctrineDBALBridge\Test;
 
 /**
  * Test WrapsNextCommandInTransaction
@@ -23,12 +23,24 @@ namespace JNB\DoctrineDBALBridge\CommandBus;
  */
 class WrapsNextCommandInTransactionTest extends \PHPUnit_Framework_TestCase
 {
-    /* Subject */
+    /**
+     * @var WrapsNextCommandInTransaction
+     */
     private $transactionalCommandBus;
 
-    /* Collaborators */
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
     private $command;
+
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
     private $commandBus;
+
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
     private $connection;
 
     public function setUp()
