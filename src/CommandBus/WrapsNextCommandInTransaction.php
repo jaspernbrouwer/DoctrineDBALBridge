@@ -24,7 +24,7 @@ use SimpleBus\Command\Command;
  * Class WrapsNextCommandInTransaction
  *
  * @license https://github.com/jaspernbrouwer/DoctrineDBALBridge/blob/master/LICENSE MIT
- * @author  Jasper N. Brouwer
+ * @author  Jasper N. Brouwer <jasper@nerdsweide.nl>
  */
 class WrapsNextCommandInTransaction implements CommandBus
 {
