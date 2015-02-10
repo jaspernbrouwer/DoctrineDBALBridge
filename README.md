@@ -15,7 +15,7 @@ Version 2.x is compatible with [SimpleBus][1]/[MessageBus][3].
 
 Using Composer:
 
-    composer require jaspernbrouwer/doctrine-dbal-bridge
+    composer require jaspernbrouwer/doctrine-dbal-bridge ~1.0
 
 ## Usage
 
