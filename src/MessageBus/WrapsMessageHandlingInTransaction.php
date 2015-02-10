@@ -13,12 +13,11 @@
  * this source code.
  */
 
-namespace JNB\DoctrineDBALBridge\Test;
+namespace JNB\DoctrineDBALBridge\MessageBus;
 
 use Doctrine\DBAL\Driver\Connection;
-use SimpleBus\Command\Bus\CommandBus;
-use SimpleBus\Command\Bus\RemembersNext;
-use SimpleBus\Command\Command;
+use SimpleBus\Message\Bus\Middleware\MessageBusMiddleware;
+use SimpleBus\Message\Message;
 
 /**
  * Class WrapsNextCommandInTransaction
@@ -26,10 +25,8 @@ use SimpleBus\Command\Command;
  * @license https://github.com/jaspernbrouwer/DoctrineDBALBridge/blob/master/LICENSE MIT
  * @author  Jasper N. Brouwer <jasper@nerdsweide.nl>
  */
-class WrapsNextCommandInTransaction implements CommandBus
+final class WrapsMessageHandlingInTransaction implements MessageBusMiddleware
 {
-    use RemembersNext;
-
     /**
      * @var Connection
      */
@@ -46,12 +43,12 @@ class WrapsNextCommandInTransaction implements CommandBus
     /**
      * {@inheritdoc}
      */
-    public function handle(Command $command)
+    public function handle(Message $message, callable $next)
     {
         $this->connection->beginTransaction();
 
         try {
-            $this->next($command);
+            $next($message);
 
             $this->connection->commit();
         } catch (\Exception $e) {

@@ -1,9 +1,15 @@
 DoctrineDBALBridge
 ==================
 
-A bridge for using [SimpleBus](https://github.com/SimpleBus) with [Doctrine DBAL](http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/). 
+A bridge for using [SimpleBus][1] with [Doctrine DBAL][4]. 
 
 By [Jasper N. Brouwer](https://github.com/jaspernbrouwer)
+
+## Versions
+
+Version 1.x is compatible with [SimpleBus][1]/[CommandBus][2].
+
+Version 2.x is compatible with [SimpleBus][1]/[MessageBus][3].
 
 ## Installation
 
@@ -13,23 +19,33 @@ Using Composer:
 
 ## Usage
 
-1. Set up a [command bus](https://github.com/SimpleBus/CommandBus):
+1. Set up a [command bus][3]:
 
     ```php
     $commandBus = ...;
     ```
 
-2. Set up a Doctrine DBAL connection:
+2. Set up a [Doctrine DBAL][4] connection:
 
     ```php
     $connection = ...;
     ```
 
-3. Wrap the existing command bus in order to handle your commands inside a database transaction: 
+3. Set up the WrapsMessageHandlingInTransaction middleware:
 
     ```php
-    use JNB\DoctrineDBALBridge\CommandBus\WrapsNextCommandInTransaction;
+    use JNB\DoctrineDBALBridge\MessageBus\WrapsMessageHandlingInTransaction;
     
-    $transactionalCommandBus = new WrapsNextCommandInTransaction($connection);
-    $transactionalCommandBus->setNext($commandBus);
+    $transactionalMiddleware = new WrapsMessageHandlingInTransaction($connection);
     ```
+
+3. Add the middleware to the command bus: 
+
+    ```php
+    $commandBus->addMiddleware($transactionalMiddleware);
+    ```
+
+[1]: https://github.com/SimpleBus
+[2]: https://github.com/SimpleBus/CommandBus
+[3]: https://github.com/SimpleBus/MessageBus
+[4]: http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/
