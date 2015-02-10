@@ -13,7 +13,9 @@
  * this source code.
  */
 
-namespace JNB\DoctrineDBALBridge\Test;
+namespace JNB\DoctrineDBALBridge\Tests\CommandBus;
+
+use JNB\DoctrineDBALBridge\CommandBus\WrapsNextCommandInTransaction;
 
 /**
  * Test WrapsNextCommandInTransaction

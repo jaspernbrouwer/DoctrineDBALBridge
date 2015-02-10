@@ -24,5 +24,8 @@
 
     "autoload": {
         "psr-4" : { "JNB\\DoctrineDBALBridge\\" : "src" }
+    },
+    "autoload-dev": {
+        "psr-4" : { "JNB\\DoctrineDBALBridge\\Tests\\" : "tests" }
     }
 }

@@ -13,7 +13,7 @@
  * this source code.
  */
 
-namespace JNB\DoctrineDBALBridge\Test;
+namespace JNB\DoctrineDBALBridge\CommandBus;
 
 use Doctrine\DBAL\Driver\Connection;
 use SimpleBus\Command\Bus\CommandBus;
